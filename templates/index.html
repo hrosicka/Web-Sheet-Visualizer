@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Sheet Visualizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Web Sheet Visualizer</h1>
+            <h2>Upload Excel File</h2>
+        </header>
+        <section class="upload-section">
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" id="fileInput" class="file-input" onchange="displayFileName(this)">
+                <label for="fileInput" class="file-label">Choose File</label>
+                <input type="submit" value="Upload" class="upload-button">
+            </form>
+            <div id="fileNameDisplay" class="file-display"></div>
+        </section>
+        {% if table_html %}
+        <section class="data-section">
+            <h2>Excel Data</h2>
+            <div class="table-container">
+                {{ table_html | safe }}
+            </div>
+        </section>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
